@@ -1,0 +1,121 @@
+﻿@model IEnumerable<Nhom18WebBanHoa.Models.GioHang>
+@{
+    ViewBag.Title = "DatHang";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#removecart").click(function () {
+            var model = {};
+            model.id = $("#idsanpham").val();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Remove", "GioHang")',
+                data: JSON.stringify(model),
+                dataType: "Json",
+                contentType: "application/json; charset = utf-8",
+                success: function () {
+                    $('#CartCount').text(@Session["count"] - 1);
+                    $("#san_pham-" + model.id).remove();
+                },
+                error: function () {
+                    alert("Lỗi trong khi thêm vào giỏ hàng!");
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<section class="shoping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shoping__cart__table">
+                    @if (Model != null)
+                    {
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="shoping__product">Products</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+
+                                    <tr id="san_pham-@item.San_Pham.id">
+                                        <td class="shoping__cart__item">
+                                            <img width="150" src="~/Images/@item.San_Pham.hinh" alt="">
+                                            <h5>@item.San_Pham.tenSP (@item.San_Pham.mota)</h5>
+
+                                        </td>
+                                        <td class="shoping__cart__price">
+                                            @item.San_Pham.gia.GetValueOrDefault(0).ToString("N0") VND
+                                        </td>
+                                        <td class="shoping__cart__quantity">
+                                            <div class="quantity">
+                                                <div class="pro-qty">
+                                                    <input type="text" value="@item.Quantity">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="shoping__cart__total">
+                                            @((item.San_Pham.gia.GetValueOrDefault(0) * item.Quantity).ToString("N0")) VND
+                                        </td>
+                                        <td class="shoping__cart__item__close">
+                                            <input type="hidden" value="@item.San_Pham.id" id="idsanpham">
+                                            <a href="" class="btn btn-light" id="removecart"> XÓA</a>
+                                        </td>
+                                    </tr>
+
+                                }
+
+
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <span class="alert alert-danger">Chưa có sản phẩm nào trong giỏ hàng</span>
+                    }
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                @using (Html.BeginForm("DatHang", "GioHang", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        <label>Nguời Nhận</label>
+                        <input name="ten" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Địa Chỉ</label>
+                        <input name="diachi" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input name="email" type="email" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Tiêu Đề</label>
+                        <input name="tieude" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>SDT</label>
+                        <input name="SDT" class="form-control" required />
+                    </div>
+                    <button type="submit" class="btn btn-danger">ĐẶT</button>
+                }
+            </div>
+
+        </div>
+    </div>
+</section>

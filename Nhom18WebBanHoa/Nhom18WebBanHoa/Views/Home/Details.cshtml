@@ -1,0 +1,83 @@
+﻿@using Nhom18WebBanHoa.Models;
+@model San_Pham
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#addtocart").click(function () {
+            var model = {};
+            model.id = @Model.id;
+            model.Quantity = $("#ipQuantity").val();
+            debugger;
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AddToCart", "GioHang")',
+                data: JSON.stringify(model),
+                dataType: "Json",
+                contentType: "application/json; charset = utf-8",
+                success: function () {
+                    alert("Thên giỏ hàng thành công!")
+                    $('#CartCount').text(@Session["count"] + 1);
+                },
+                error: function () {
+                    alert("Lỗi trong khi thêm vào giỏ hàng!");
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<!-- Breadcrumb Section End -->
+<!-- Product Details Section Begin -->
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="product__details__pic">
+                    <div class="product__details__pic__item">
+                        <img class="product__details__pic__item--large"
+                             src="~/Images/@Model.hinh" />
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="product__details__text">
+                    <h3>@Model.tenSP</h3>
+                    <div class="product__details__rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                        <span></span>
+                    </div>
+                    <div class="product__details__price">@Model.gia.GetValueOrDefault(0).ToString("N0") VND</div>
+
+                    <div class="product__details__quantity">
+                        <div class="quantity">
+                            <div class="pro-qty">
+                                <input type="text" id="ipQuantity" value="1">
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" id="addtocart" class="primary-btn">ADD TO CARD</a>
+
+                    <ul>
+                        <li><b>Weight</b> <span>@Model.mota</span></li>
+
+                        <li><b>Shipping</b> <span>Nhanh Chóng<samp></samp></span></li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Product Details Section End -->
+<!-- Related Product Section Begin -->

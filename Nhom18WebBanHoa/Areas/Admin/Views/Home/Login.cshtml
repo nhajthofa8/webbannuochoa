@@ -1,0 +1,77 @@
+﻿@model Nhom18WebBanHoa.Models.Nguoi_Dung
+
+@{
+    Layout = null;
+}
+
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Login Admin</title>
+    <link href="~/Areas/Admin/Content/login/css/style.css" rel="stylesheet" />
+    <script src="~/Areas/Admin/Content/login/js/jquery.min.js"></script>
+
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- for-mobile-apps -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Classy Login form Responsive, Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <!-- //for-mobile-apps -->
+    <!--Google Fonts-->
+
+    <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <!--header start here-->
+    <div class="header">
+        <div class="header-main">
+            <h1>LOGIN ADMIN</h1>
+            @ViewBag.error
+            <div class="header-bottom">
+                <div class="header-right w3agile">
+                    @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="header-left-bottom agileinfo">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div>
+                                @Html.LabelFor(model => model.taikhoan, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div>
+                                    @Html.TextBoxFor(model => model.taikhoan, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.taikhoan, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div>
+                                @Html.LabelFor(model => model.matkhau, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div>
+                                    @Html.PasswordFor(model => model.matkhau, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.matkhau, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+
+                            <div>
+                                <div>
+                                    <input type="submit" value="Login">
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

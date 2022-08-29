@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Nhom18WebBanHoa.Models.San_Pham>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2></h2>
+
+<p style="text-align:center">
+    @Html.ActionLink("Thêm Mới Sản Phẩm", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tenSP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mota)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.trangthai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ngaydanghinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loai_San_Pham.tenloaiSP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nha_Cung_Cap.tenNCC)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tenSP)
+            </td>
+            <td>
+                <div id="Hinh"><img src="@Url.Content("~/Images/"+item.hinh)" width="100" height="100" /></div>
+            </td>
+            <td>
+                @Html.Raw(item.gia.GetValueOrDefault(0).ToString("N0"))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mota)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.trangthai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ngaydanghinh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Loai_San_Pham.tenloaiSP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nha_Cung_Cap.tenNCC)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>

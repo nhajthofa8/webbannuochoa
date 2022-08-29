@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Nhom18WebBanHoa.Models.Don_Hang>
+
+
+@{
+    ViewBag.Title = "DatHangThanhCong";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+<div class="alert alert-success" style="text-align:center">
+    Bạn vừa mua hàng thành công vui lòng check mail để biết chi tiết đơn hàng!
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SDT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.diachi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tieude)
+        </th>
+
+
+
+
+
+
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => Session["tendat"])
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Session["SDTdat"])
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Session["diachidat"])
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Session["tieude"])
+        </td>
+
+
+
+
+
+    </tr>
+
+</table>

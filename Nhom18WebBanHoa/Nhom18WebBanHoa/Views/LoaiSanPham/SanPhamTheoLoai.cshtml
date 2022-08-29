@@ -1,0 +1,132 @@
+﻿@model PagedList.IPagedList<Nhom18WebBanHoa.Models.San_Pham>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "SanPhamTheoLoai";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+<section class="featured spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2>SẢN PHẨM NỔI BẬT</h2>
+                </div>
+                <div class="featured__controls">
+                    <ul>
+                        @Html.Action("_LoaiSanPhamDuoi", "LoaiSanPham")
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row featured__filter">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="featured__item">
+                        <div class="featured__item__pic set-bg" data-setbg="~/Content/img/featured/feature-1.jpg">
+                            <a href="@Url.Action("Details", "Home", new { id = item.id})"><img src="~/Images/@item.hinh" /></a>
+                            <ul class="featured__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a href="@Url.Action("Details", "Home", new { id = @item.id})">@item.tenSP</a></h6>
+                            <h5>@item.gia.GetValueOrDefault(0).ToString("N0") VND</h5>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+        <div class="product__pagination">
+
+            @Html.PagedListPager(Model, page => Url.Action("SanPhamTheoLoai", new { page }))
+        </div>
+    </div>
+</section>
+<!-- Featured Section End -->
+<!-- Banner Begin -->
+<div class="banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="banner__pic">
+                    <img src="~/Content/img/banner/banner-1.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="banner__pic">
+                    <img src="~/Content/img/banner/banner-2.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner End -->
+<!-- Latest Product Section Begin -->
+
+<section class="from-blog spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title from-blog__title">
+                    <h2>Tin Tức</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="blog__item">
+                    <div class="blog__item__pic">
+                        <img src="~/Content/img/blog/blog-1.jpg" alt="">
+                    </div>
+                    <div class="blog__item__text">
+                        <ul>
+                            <li><i class="fa fa-calendar-o"></i> Dec 10,2021</li>
+                            <li><i class="fa fa-comment-o"></i> </li>
+                        </ul>
+                        <h5><a href="#">Lợi ích của trái cây</a></h5>
+                        <p>Trái cây là một loại thực phẩm rất tốt cho cơ thể chúng ta. Thành phần gồm có Vitamin A, Vitamin B1, Vitamin C và còn nhiều hơn thế. Chúng giúp cho chúng ta có 1 làn da khoẻ mạnh, giảm cân cũng như có thể tăng sức đề kháng. </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="blog__item">
+                    <div class="blog__item__pic">
+                        <img src="~/Content/img/blog/blog-2.jpg" alt="">
+                    </div>
+                    <div class="blog__item__text">
+                        <ul>
+                            <li><i class="fa fa-calendar-o"></i> Dec 10,2021</li>
+                            <li><i class="fa fa-comment-o"></i> </li>
+                        </ul>
+                        <h5><a href="#">Lợi ích của các loại đậu</a></h5>
+                        <p>
+                            Đậu chứa nhiều thành phần dinh dưỡng tuyệt vời như chất xơ, protein và vitamin B. Chúng thuộc họ thực vật Fabaceae, đó là điều khiến chúng khác biệt với các loại trái cây và hạt khác. Đậu cung cấp một loạt có hàm lượng chất dinh dưỡng cao đem lại rất nhiều lợi ích tiềm năng cho sức khỏe.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="blog__item">
+                    <div class="blog__item__pic">
+                        <img src="~/Content/img/blog/blog-3.jpg" alt="">
+                    </div>
+                    <div class="blog__item__text">
+                        <ul>
+                            <li><i class="fa fa-calendar-o"></i> Dec 10,2021</li>
+                            <li><i class="fa fa-comment-o"></i> </li>
+                        </ul>
+                        <h5><a href="#">5 sản phẩm tốt cho tiêu hóa</a></h5>
+                        <p>Để tìm hiểu rõ hơn thì 5 sản phẩm sau sẽ giúp cho hệ tiêu hoá của chúng ta trở nên khoẻ mạnh hơn. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

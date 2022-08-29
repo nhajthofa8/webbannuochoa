@@ -1,0 +1,135 @@
+﻿@using Nhom18WebBanHoa.Models;
+@model San_Pham
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#addtocart").click(function () {
+            var model = {};
+            model.id = @Model.id;
+            model.Quantity = $("#ipQuantity").val();
+            debugger;
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AddToCart", "GioHang")',
+                data: JSON.stringify(model),
+                dataType: "Json",
+                contentType: "application/json; charset = utf-8",
+                success: function () {
+                    window.location.href = "@Url.Action("Index", "GioHang")"
+                    $('#CartCount').text(@Session["count"] + 1);
+                },
+                error: function () {
+                    alert("Lỗi trong khi thêm vào giỏ hàng!");
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<!-- Breadcrumb Section End -->
+<!-- Product Details Section Begin -->
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="product__details__pic">
+                    <div class="product__details__pic__item">
+                        <img class="product__details__pic__item--large"
+                             src="~/Images/@Model.hinh" />
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="product__details__text">
+                    <h3>@Model.tenSP</h3>
+                    <div class="product__details__rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                        <span></span>
+                    </div>
+                    <div class="product__details__price">@Model.gia.GetValueOrDefault(0).ToString("N0") VNĐ</div>
+
+                    <div class="product__details__quantity">
+                        <div class="quantity">
+                            <div class="pro-qty">
+                                <input type="text" id="ipQuantity" value="1">
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" id="addtocart" class="primary-btn">THÊM VÀO GIỎ HÀNG</a>
+
+                    <ul>
+                        <li><b>MÔ TẢ</b> <span>@Model.mota</span></li>
+
+                        <li><b>GIAO HÀNG</b> <span>Nhanh Chóng<samp></samp></span></li>
+
+                        <li><b>ĐẶT HÀNG NGAY</b> <span>0825415305 (7:30 - 22:00)<samp></samp></span></li>
+
+                        <li><b>GIỚI TÍNH</b> <span>UNISEX<samp></samp></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+            <div class="col-lg-12">
+                <div class="product__details__tab">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
+                               aria-selected="true">Giới Thiệu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
+                               aria-selected="false">Phân Loại</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
+                               aria-selected="false">Miễn trừ trách nhiệm <span></span></a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                            <div class="product__details__tab__desc">
+                                <h6>NƯỚC HOA LÀ GÌ</h6>
+                                <p>
+                                    Nước hoa hay dầu thơm (tiếng Anh: Perfume, tiếng Pháp: parfum) là hỗn hợp của tinh dầu thơm hoặc các hợp chất tạo mùi thơm, chất hãm hương (lưu hương) và dung môi, thường ở dạng lỏng. Sử dụng với mục đích tạo ra mùi thơm cho cơ thể, cảm giác dễ chịu, sự quyến rũ giới tính hay đơn giản chỉ là che giấu một mùi khó chịu nào đó.[1]
+  
+                                    Các văn bản cổ và các cuộc khai quật khảo cổ cho thấy việc sử dụng nước hoa trong một số nền văn minh tiền sử. Nước hoa hiện đại bắt đầu vào cuối thế kỷ 19 với sự tổng hợp của các hợp chất tạo mùi thơm thương mại như vanillin hoặc coumarin, cho phép tạo ra nước hoa có mùi mà trước đây không thể đạt được nếu chỉ dùng các chất thơm tự nhiên.
+                                </p>
+                                <p>
+                                    Thành phần của nước hoa bao gồm các chất tạo mùi như tinh dầu, chất thơm, chất lưu hương và dung môi nước hoa. Trên khía cạnh hoá học, nước hoa là một hợp chất bao gồm alcohol (cồn), nước và các phân tử có mùi thơm bốc hơi ở nhiệt độ thường.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tabs-2" role="tabpanel">
+                            <div class="product__details__tab__desc">
+                                <h6>Phân Loại Nước Hoa Và Dung Tích?</h6>
+                                <p>
+                                    Dựa theo nồng độ tinh dầu tự nhiên (tecpen tự nhiên), chia nước hoa thành các loại chính: • Perfume (Extrait) hay Extrait de parfum: với hàm lượng tỉnh đầu từ 20-40%, đây là loại nước hoa đất nhất và hiếm nhất vì nồng độ tinh dầu rất cao đồng nghĩa với việc mùi hương rất nồng và bên • Eau De Perfume (EDP): với hàm lượng tinh dầu từ 12-20%, đậm đặc nhất. Loại nước hoa chủ yếu dành cho phái nữ, với nồng độ tinh dầu cao, nồng nàn và bền mùi. Là dạng nước hoa phổ biến • hiện nay, sử dụng hợp với những vùng khí hậu khô, hay mùa lạnh. Nước hoa là gì? tính thương mại) các chất thơm như vani, coumarin. (Xem thêm từ Wik Phân loại nước hoa theo nồng độ và dung tích Ngoài phân loại theo nồng độ nước hoa, thì giới chuyển gia còn phân loại nước hoa theo dung tích của chai và tần suất sản xuất như: Nước hoa Mini và Nước hoa Niche. Eau De Toilette (EDT); có từ 5-12% tinh đầu. Loại nước hoa phổ biến nhất hiện nay trên thế giới, với giá cả phải chăng và chất lượng mùi hương trung bình. Đa dạng về mẫu mã, chủng loại hay nhà sản xuất. Đây là loại nước hoa với mùi nhẹ nhàng, khái bền mùi, và được đành cho cả nam và nữ. • Eau De Cologne (EDC) hay Eau De Fraiche: chỉ có 2-4% tinh dầu: Thương hiệu (reg, trademark. Original Eau de Cologne - Ra đời lần đầu tiên ở thành phố Cologne của Đức, sau đó lan rộng ra
+                                </p>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tabs-3" role="tabpanel">
+                            <div class="product__details__tab__desc">
+                                <h6>Miễn trừ trách nhiệm</h6>
+                                <p>
+                                    Miễn trừ trách nhiệm: Mặc dù chúng tôi luôn cố gắng đảm bảo rằng mọi thông tin đều chính xác, nhưng đôi khi nhà sản xuất có thể thay đổi danh sách thành phần của sản phẩm. Bao bì và thành phần trong thực tế có thể khác biệt với những gì được mô tả trên website. Chúng tôi khuyến cáo bạn không nên chỉ dựa trên thông tin được ghi trên website, mà hãy luôn luôn đọc nhãn mác, cảnh báo và hướng dẫn sử dụng trước khi dùng sản phẩm. Để biết thêm thông tin, vui lòng liên hệ nhà sản xuất. Nội dung trên trang web này chỉ được dùng để tham khảo, không thể thay thế chỉ dẫn của dược sỹ, bác sỹ và các chuyên gia sức khỏe. Bạn không nên sử dụng thông tin này để tự chẩn đoán và điều trị bệnh của mình. Hãy liên hệ các cơ quan y tế ngay lập tức nếu bạn nghi ngờ mình đang gặp vấn đề về sức khỏe. Các thông tin và công bố liên quan đến thực phẩm chức năng giảm cân chưa được thẩm định bởi Cục quản lý Thực phẩm và Dược phẩm, cũng như không được dùng để chẩn đoán, điều trị, chữa trị, hay phòng ngừa bệnh tật cùng các vấn đề sức khỏe khác. Chúng tôi không chịu trách nhiệm về nhầm lẫn hay sai lệch về sản phẩm.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</section>
+<!-- Product Details Section End -->
+<!-- Related Product Section Begin -->
+

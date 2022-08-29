@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Nhom18WebBanHoa.Models.Loai_San_Pham>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2></h2>
+
+<p style="text-align:center">
+    @Html.ActionLink("Thêm Mới", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tenloaiSP)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tenloaiSP)
+            </td>
+            <td>
+                @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Xem Chi Tiết", "Details", new { id = item.id }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>

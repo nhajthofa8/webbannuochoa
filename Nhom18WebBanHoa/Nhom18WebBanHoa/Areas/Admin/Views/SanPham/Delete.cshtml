@@ -1,0 +1,90 @@
+﻿@model Nhom18WebBanHoa.Models.San_Pham
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>San_Pham</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tenSP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenSP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mota)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trangthai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trangthai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngaydanghinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngaydanghinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Loai_San_Pham.tenloaiSP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Loai_San_Pham.tenloaiSP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nha_Cung_Cap.tenNCC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nha_Cung_Cap.tenNCC)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("Delete", "SanPham", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
